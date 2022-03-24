@@ -1,4 +1,3 @@
-from cProfile import label
 import matplotlib.pyplot as plt
 import time
 from binary_search import binary_search
@@ -27,11 +26,11 @@ def case_linear_search(no_of_inputs, target):
     return diff
 
 # for linear search
-# for i in input_sizes:
-#     best_time_in_ms = case_linear_search(i, 0)
-#     worst_time_in_ms = case_linear_search(i, i)
-#     linear_best_case_time.append(best_time_in_ms)
-#     linear_worst_case_time.append(worst_time_in_ms)
+for i in input_sizes:
+    best_time_in_ms = case_linear_search(i, 0)
+    worst_time_in_ms = case_linear_search(i, i)
+    linear_best_case_time.append(best_time_in_ms)
+    linear_worst_case_time.append(worst_time_in_ms)
 
 # for binary search
 for j in input_sizes:
@@ -42,12 +41,12 @@ for j in input_sizes:
 
 fig, (plt1, plt2) = plt.subplots(nrows=1, ncols=2)
 
-# plt1.plot(input_sizes, linear_best_case_time, ".", label="Best Case")
-# plt1.plot(input_sizes, linear_worst_case_time, "*", label="Worst Case")
-# plt1.set_xlabel("Input size")
-# plt1.set_ylabel("Time in miliseconds")
-# plt1.set_title("Linear Search")
-# plt1.legend()
+plt1.plot(input_sizes, linear_best_case_time, ".", label="Best Case")
+plt1.plot(input_sizes, linear_worst_case_time, "*", label="Worst Case")
+plt1.set_xlabel("Input size")
+plt1.set_ylabel("Time in miliseconds")
+plt1.set_title("Linear Search")
+plt1.legend()
 
 
 #binary search
@@ -59,12 +58,10 @@ plt2.set_title("Binary Search")
 plt2.legend()
 plt.show()
 
+def worst_case_linear_search(worst_case_value):
+    start_time = time.time()
+    linear_search(range(100), worst_case_value)
+    end_time = time.time()
+    diff = (start_time - end_time) * 1000
 
-
-# def worst_case_linear_search(worst_case_value):
-#     start_time = time.time()
-#     linear_search(range(100), worst_case_value)
-#     end_time = time.time()
-#     diff = (start_time - end_time) * 1000
-
-# print(case_linear_search(1000))
+print(case_linear_search(1000))
